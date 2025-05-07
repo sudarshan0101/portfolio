@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudarshan Rangappa | Cybersecurity Portfolio | SIEM, SOAR, Blue Team Projects</title>
+    <meta name="description" content="Explore Sudarshan Rangappa's cybersecurity portfolio, showcasing hands-on projects in SOC simulation, SIEM/SOAR (Wazuh, Splunk, Shuffle), NIDS (Suricata), and blue team operations. Actively seeking entry-level cybersecurity roles.">
+    <meta name="keywords" content="Sudarshan Rangappa, Cybersecurity Portfolio, Cybersecurity Projects, Blue Team, SOC Analyst, SIEM, SOAR, Wazuh, Splunk, Suricata, OpenVAS, Cowrie, Shuffle, Incident Response, Vulnerability Assessment, Network Security, Entry-Level Cybersecurity, NFSU, CEH">
+    <link rel="icon" href="https://i.postimg.cc/0rV2f9TF/SR-1.png" type="image/png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #13171f;
+            --text-primary: #e6e6e6;
+            --text-secondary: #b8b8b8;
+            --accent-blue: #0099ff;
+            --accent-green: #00cc66;
+            --accent-red: #ff3333;
+            --accent-cyan: #00e5ff; 
+            --animation-speed: 0.3s;
+            --scroll-animation-duration: 0.8s; /* Control scroll animation speed */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 1px 2px; 
+            z-index: -2; 
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(10, 14, 23, 0.95); 
+            backdrop-filter: blur(10px); 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--animation-speed) ease;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-blue);
+        }
+
+        .logo span {
+            color: var(--accent-green);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            transition: color var(--animation-speed) ease, text-shadow var(--animation-speed) ease;
+            font-family: 'Courier New', monospace;
+            position: relative; 
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 5px var(--accent-cyan);
+        }
+
+        nav ul li a::after { 
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-cyan);
+            transition: width var(--animation-speed) ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .menu-btn {
+            display: none; 
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .terminal-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent; 
+            overflow: hidden;
+            z-index: -1; 
+            opacity: 0.25; 
+        }
+
+        .log-line {
+            position: absolute;
+            color: var(--accent-green);
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0.7;
+            animation: scroll-log 15s linear infinite;
+        }
+
+        @keyframes scroll-log {
+            0% { transform: translateY(-100%); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        #home {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden; 
+        }
+        
+        .hero-flex-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .hero-text-content {
+            flex: 1; 
+            z-index: 2; 
+        }
+
+        .hero-greeting {
+            font-family: 'Courier New', monospace;
+            color: var(--accent-green);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-greeting::after { 
+            content: '_';
+            animation: cursor-blink 1s infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes cursor-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-family: 'Courier New', monospace;
+            color: var(--accent-blue);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            min-height: 2.2rem; 
+        }
+        .hero-subtitle .typed-cursor { 
+            color: var(--accent-blue);
+            opacity: 1;
+            animation: typed-blink 0.7s infinite;
+        }
+        @keyframes typed-blink {
+            50% { opacity: 0.0; }
+        }
+
+
+        .hero-text {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        .profile-container {
+            position: relative;
+            margin-left: 2rem; 
+            z-index: 2; 
+            flex-shrink: 0; 
+        }
+
+        .profile-pic {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 5px solid var(--accent-blue);
+            box-shadow: 0 0 15px rgba(0, 153, 255, 0.5), 0 0 25px rgba(0, 153, 255, 0.3) inset; 
+            background-color: rgb(32, 40, 56); 
+            overflow: hidden; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 153, 255, 0.7), 0 0 35px rgba(0, 153, 255, 0.4) inset;
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+
+        .profile-pic .placeholder-icon-fallback {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            font-size: 5rem;
+            color: var(--text-secondary);
+            background-color: var(--bg-secondary); 
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--animation-speed) ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            position: relative; 
+            overflow: hidden; 
+        }
+        .btn::before { 
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease, height 0.4s ease;
+            z-index: 0;
+        }
+        .btn:hover::before {
+            width: 250%;
+            height: 250%;
+        }
+        .btn > * { 
+            position: relative;
+            z-index: 1;
+        }
+
+
+        .btn-primary {
+            background-color: var(--accent-blue);
+            color: white;
+            box-shadow: 0 0 10px rgba(0, 153, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: #007acc; 
+            box-shadow: 0 0 15px rgba(0, 153, 255, 0.5), 0 0 20px var(--accent-cyan); 
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent-green);
+            border: 2px solid var(--accent-green);
+            box-shadow: 0 0 10px rgba(0, 204, 102, 0.2);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(0, 204, 102, 0.1);
+            box-shadow: 0 0 15px rgba(0, 204, 102, 0.4), 0 0 20px var(--accent-green); 
+            transform: translateY(-2px);
+            color: var(--accent-green); 
+        }
+        
+        .btn:focus { 
+            outline: 2px solid var(--accent-cyan);
+            outline-offset: 2px;
+        }
+
+        .seeking-badge {
+            display: inline-block;
+            background-color: var(--accent-green);
+            color: black; 
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+            box-shadow: 0 0 10px rgba(0, 204, 102, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 10px rgba(0, 204, 102, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 15px rgba(0, 204, 102, 0.7), 0 0 5px var(--accent-green); }
+            100% { transform: scale(1); box-shadow: 0 0 10px rgba(0, 204, 102, 0.5); }
+        }
+
+        /* Sections General */
+        section { 
+            padding: 6rem 0; 
+            position: relative;
+            overflow: hidden; 
+        }
+        #about, #certifications, #projects, #contact { 
+             background-color: var(--bg-secondary);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem; 
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            color: var(--text-primary);
+            position: relative;
+            cursor: default; 
+        }
+        
+        /* Glitch Effect for Section Titles */
+        .section-title:hover {
+            animation: glitch 0.3s linear infinite alternate-reverse;
+        }
+        .section-title::before,
+        .section-title::after {
+            content: attr(data-text); 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: var(--bg-primary); 
+        }
+        #about .section-title::before, #about .section-title::after,
+        #certifications .section-title::before, #certifications .section-title::after,
+        #projects .section-title::before, #projects .section-title::after, 
+        #contact .section-title::before, #contact .section-title::after {
+             background: var(--bg-secondary); 
+        }
+        .section-title::before {
+            left: 2px; text-shadow: -2px 0 var(--accent-red); clip: rect(24px, 550px, 90px, 0); animation: glitch-before 2s infinite linear alternate-reverse;
+        }
+        .section-title::after {
+            left: -2px; text-shadow: -2px 0 var(--accent-blue), 2px 2px var(--accent-red); clip: rect(85px, 550px, 140px, 0); animation: glitch-after 1.5s infinite linear alternate-reverse;
+        }
+        @keyframes glitch { 0% { transform: translate(0); } 20% { transform: translate(-2px, 2px); } 40% { transform: translate(-2px, -2px); } 60% { transform: translate(2px, 2px); } 80% { transform: translate(2px, -2px); } 100% { transform: translate(0); } }
+        @keyframes glitch-before { 0% { clip: rect(24px, 550px, 90px, 0); } 10% { clip: rect(10px, 550px, 75px, 0); } 20% { clip: rect(50px, 550px, 60px, 0); } 30% { clip: rect(30px, 550px, 90px, 0); } 40% { clip: rect(20px, 550px, 110px, 0); } 50% { clip: rect(60px, 550px, 70px, 0); } 60% { clip: rect(40px, 550px, 95px, 0); } 70% { clip: rect(80px, 550px, 115px, 0); } 80% { clip: rect(45px, 550px, 80px, 0); } 90% { clip: rect(105px, 550px, 100px, 0); } 100% { clip: rect(50px, 550px, 100px, 0); } }
+        @keyframes glitch-after { 0% { clip: rect(85px, 550px, 140px, 0); } 10% { clip: rect(100px, 550px, 120px, 0); } 20% { clip: rect(75px, 550px, 130px, 0); } 30% { clip: rect(90px, 550px, 110px, 0); } 40% { clip: rect(115px, 550px, 95px, 0); } 50% { clip: rect(80px, 550px, 105px, 0); } 60% { clip: rect(65px, 550px, 125px, 0); } 70% { clip: rect(95px, 550px, 100px, 0); } 80% { clip: rect(110px, 550px, 140px, 0); } 90% { clip: rect(85px, 550px, 115px, 0); } 100% { clip: rect(70px, 550px, 130px, 0); } }
+
+        .section-title-underline::after { 
+            content: ''; display: block; width: 80px; height: 4px; background: linear-gradient(to right, var(--accent-blue), var(--accent-green)); margin: 0.8rem auto 0;
+        }
+
+        /* --- About Section --- */
+        .about-content { display: flex; gap: 3rem; align-items: flex-start; }
+        .about-text { flex: 2; }
+        .about-text p { margin-bottom: 1.5rem; color: var(--text-secondary); line-height: 1.8; }
+        .education-box { flex: 1; background-color: rgba(10, 14, 23, 0.8); border-radius: 10px; padding: 2rem; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); border-left: 4px solid var(--accent-blue); }
+        .education-item { margin-bottom: 2rem; }
+        .education-item:last-child { margin-bottom: 0; }
+        .degree { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary); }
+        .institution { font-size: 1rem; color: var(--accent-blue); margin-bottom: 0.3rem; }
+        .edu-date { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .edu-gpa { font-size: 0.9rem; color: var(--accent-green); font-weight: 600; }
+
+        /* --- Skills Section --- */
+        .skills-wrapper { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: space-between; }
+        .skill-category { flex: 1; min-width: 300px; margin-bottom: 2rem; }
+        .skill-category h3 { font-family: 'Courier New', monospace; font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--accent-blue); border-bottom: 2px solid rgba(0, 153, 255, 0.2); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; } 
+        .skill-list { display: flex; flex-wrap: wrap; gap: 1rem; }
+        .skill-item { background-color: var(--bg-secondary); border-radius: 5px; padding: 0.8rem 1.2rem; font-size: 0.9rem; color: var(--text-secondary); display: flex; align-items: center; gap: 0.5rem; transition: all var(--animation-speed) ease; cursor: default; }
+        .skill-item:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 10px var(--accent-cyan); color: var(--text-primary); }
+        .skill-item i { color: var(--accent-green); }
+        .tools-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+        .tool-item { background-color: var(--bg-secondary); border-radius: 5px; padding: 1rem; transition: all var(--animation-speed) ease; cursor: default; border-left: 3px solid var(--accent-blue); }
+        .tool-item:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 10px var(--accent-blue); border-left-color: var(--accent-green); }
+        .tool-name { font-weight: 600; color: var(--text-primary); margin-bottom: 0.3rem; }
+        .tool-category { font-size: 0.8rem; color: var(--accent-blue); }
+
+        /* --- Certifications Section --- */
+        #certifications { background-color: var(--bg-secondary); }
+        .certifications-container { display: flex; flex-direction: column; align-items: center; gap: 2rem; max-width: 600px; margin: 0 auto; padding: 2rem; background-color: rgba(10, 14, 23, 0.8); border-radius: 10px; border: 1px solid rgba(0,153,255,0.1); box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .certification-item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1rem; }
+        .certification-badge img { max-width: 150px; height: auto; filter: drop-shadow(0 0 10px var(--accent-cyan)); transition: transform 0.3s ease; }
+        .certification-badge img:hover { transform: scale(1.05); }
+        .certification-details h4 { font-size: 1.3rem; color: var(--text-primary); margin-bottom: 0.5rem; }
+        .certification-details p { color: var(--text-secondary); margin-bottom: 1rem; }
+        .certification-link-btn { background: none; border: none; padding: 0; cursor: pointer; color: var(--accent-green); font-family: 'Courier New', monospace; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.3rem; transition: all var(--animation-speed) ease; }
+        .certification-link-btn:hover { color: #00e673; text-shadow: 0 0 5px var(--accent-green); }
+        .certification-link-btn:focus { outline: 2px solid var(--accent-green); outline-offset: 2px; }
+
+        /* --- Projects Section --- */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2rem; }
+        .project-card { background-color: rgba(10, 14, 23, 0.8); border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: all var(--animation-speed) ease; border: 1px solid rgba(0,153,255,0.1); display: flex; flex-direction: column; }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.3), 0 0 15px var(--accent-blue); border-color: var(--accent-blue); }
+        .project-header { padding: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1); position: relative; }
+        .project-title { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--accent-blue); font-family: 'Courier New', monospace; }
+        .project-type { display: inline-block; background-color: rgba(0,204,102,0.1); color: var(--accent-green); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+        .project-body { padding: 1.5rem; flex-grow: 1; }
+        .project-desc { color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+        .tech-tag { background-color: rgba(0,153,255,0.1); color: var(--accent-blue); padding: 0.3rem 0.6rem; border-radius: 5px; font-size: 0.8rem; transition: all var(--animation-speed) ease; }
+        .tech-tag:hover { background-color: rgba(0,153,255,0.2); transform: translateY(-2px); }
+        .project-footer { padding: 1rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; }
+        .project-link { color: var(--accent-green); text-decoration: none; font-family: 'Courier New', monospace; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.5rem; transition: all var(--animation-speed) ease; }
+        .project-link:hover { color: #00e673; text-shadow: 0 0 5px var(--accent-green); transform: translateX(3px); }
+        .open-modal-btn { background: none; border: none; padding: 0; cursor: pointer; color: var(--accent-green); font-family: 'Courier New', monospace; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.5rem; transition: all var(--animation-speed) ease; }
+        .open-modal-btn:hover { color: #00e673; text-shadow: 0 0 5px var(--accent-green); transform: translateX(3px); }
+        .open-modal-btn:focus { outline: 2px solid var(--accent-green); outline-offset: 2px; }
+
+        /* --- Services Section --- */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
+        .service-card { background-color: var(--bg-secondary); border-radius: 10px; padding: 2rem; text-align: center; transition: all var(--animation-speed) ease; position: relative; z-index: 1; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, rgba(0,153,255,0.05), rgba(0,204,102,0.05)); z-index: -1; transition: opacity var(--animation-speed) ease; opacity: 0; }
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.3), 0 0 15px var(--accent-cyan); }
+        .service-card:hover::before { opacity: 1; }
+        .service-icon { font-size: 2.5rem; color: var(--accent-blue); margin-bottom: 1.5rem; transition: transform 0.3s ease; }
+        .service-card:hover .service-icon { transform: scale(1.1) rotate(5deg); }
+        .service-title { font-size: 1.3rem; margin-bottom: 1rem; color: var(--text-primary); }
+        .service-desc { color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem; }
+
+        /* --- Contact Section --- */
+        #contact { background-color: var(--bg-secondary); }
+        .contact-flex { display: flex; gap: 3rem; align-items: flex-start; }
+        .contact-info { flex: 1; }
+        .contact-title { font-size: 2rem; margin-bottom: 1.5rem; color: var(--text-primary); }
+        .contact-subtitle { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.6; }
+        .contact-item { display: flex; align-items: center; margin-bottom: 1.5rem; transition: all var(--animation-speed) ease; }
+        .contact-item:hover { transform: translateX(5px); }
+        .contact-icon { width: 40px; height: 40px; background-color: rgba(0,153,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 1rem; color: var(--accent-blue); font-size: 1.2rem; transition: all var(--animation-speed) ease; }
+        .contact-item:hover .contact-icon { background-color: var(--accent-blue); color: white; box-shadow: 0 0 10px var(--accent-blue); }
+        .contact-text { flex: 1; }
+        .contact-label { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.2rem; }
+        .contact-value { font-size: 1.1rem; color: var(--text-primary); }
+        .contact-value a { color: var(--accent-blue); text-decoration: none; transition: all var(--animation-speed) ease; }
+        .contact-value a:hover { color: var(--accent-green); text-shadow: 0 0 5px var(--accent-green); }
+        .contact-form { flex: 1; background-color: rgba(10,14,23,0.8); border-radius: 10px; padding: 2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-label { display: block; margin-bottom: 0.5rem; color: var(--text-secondary); font-size: 0.9rem; }
+        .form-input, .form-textarea { width: 100%; padding: 0.8rem 1rem; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 5px; color: var(--text-primary); font-family: inherit; resize: vertical; transition: all var(--animation-speed) ease; }
+        .form-input:focus, .form-textarea:focus { outline: none; border-color: var(--accent-blue); box-shadow: 0 0 0 2px rgba(0,153,255,0.2), 0 0 10px var(--accent-blue); }
+        .form-textarea { min-height: 150px; }
+        .btn-submit { width: 100%; background-color: var(--accent-blue); color: white; padding: 0.8rem; border: none; border-radius: 5px; cursor: pointer; font-weight: 600; transition: all var(--animation-speed) ease; }
+        .btn-submit:hover { background-color: #007acc; transform: translateY(-2px); box-shadow: 0 0 15px var(--accent-blue); }
+
+        /* --- Footer --- */
+        footer { background-color: rgba(10,14,23,0.95); padding: 2rem 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-content { display: flex; flex-direction: column; align-items: center; }
+        .footer-links { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .footer-link { color: var(--text-secondary); text-decoration: none; transition: all var(--animation-speed) ease; }
+        .footer-link:hover { color: var(--accent-blue); text-shadow: 0 0 5px var(--accent-blue); }
+        .social-links { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+        .social-link { width: 40px; height: 40px; background-color: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 1.1rem; transition: all var(--animation-speed) ease; }
+        .social-link:hover { background-color: var(--accent-blue); color: white; transform: translateY(-3px); box-shadow: 0 0 10px var(--accent-blue); }
+        .copyright { color: var(--text-secondary); font-size: 0.9rem; }
+
+        /* --- Scroll Animations --- */
+        .scroll-animate {
+            opacity: 0; 
+            transition: opacity var(--scroll-animation-duration) ease-out, transform var(--scroll-animation-duration) ease-out;
+        }
+        .scroll-animate.fade-in {
+            transform: translateY(30px); 
+        }
+        .scroll-animate.slide-in-left {
+            transform: translateX(-50px); 
+        }
+        .scroll-animate.slide-in-right {
+            transform: translateX(50px); 
+        }
+        .scroll-animate.scale-in {
+            transform: scale(0.9); 
+        }
+        
+        .scroll-animate.animate { 
+            opacity: 1;
+            transform: translate(0, 0) scale(1); 
+        }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        /* --- End Scroll Animations --- */
+
+
+        /* --- Modal Styles --- */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 2000; 
+            left: 0; top: 0; width: 100%; height: 100%;
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.7); 
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background-color: var(--bg-secondary);
+            margin: 10% auto; 
+            padding: 25px;
+            border: 1px solid var(--accent-blue);
+            border-radius: 10px;
+            width: 80%; 
+            max-width: 800px; 
+            box-shadow: 0 10px 30px rgba(0,153,255,0.2), 0 0 0 1px var(--accent-blue);
+            position: relative;
+            color: var(--text-primary);
+        }
+        .modal-content h3 { color: var(--accent-blue); font-family: 'Courier New', monospace; font-size: 1.8rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(0,153,255,0.2); padding-bottom: 0.5rem; }
+        .modal-content h4 { color: var(--accent-green); font-family: 'Courier New', monospace; font-size: 1.2rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+        .modal-content p, .modal-content ul { color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
+        .modal-content ul { list-style: none; padding-left: 0; }
+        .modal-content ul li { padding-left: 1.5em; position: relative; margin-bottom: 0.5rem; }
+        .modal-content ul li::before { content: '>'; position: absolute; left: 0; color: var(--accent-green); font-family: 'Courier New', monospace; font-weight: bold; }
+        .modal-content .tech-stack { margin-top: 1.5rem; } 
+        .close-modal-btn { color: var(--text-secondary); position: absolute; top: 15px; right: 25px; font-size: 2rem; font-weight: bold; transition: color 0.3s ease, transform 0.3s ease; }
+        .close-modal-btn:hover, .close-modal-btn:focus { color: var(--accent-red); text-decoration: none; cursor: pointer; transform: scale(1.1); }
+        .modal-architecture-img { display: block; max-width: 100%; height: auto; margin: 1.5rem auto; border-radius: 5px; border: 1px solid rgba(0,153,255,0.2); background-color: #ffffff; }
+        
+        /* Certificate Modal Specific Styles */
+        #cehCertificateModal .modal-content { max-width: 90%; width: auto; display: inline-block; padding: 15px; text-align: center; }
+        #cehCertificateModal img { display: block; max-width: 100%; max-height: 80vh; height: auto; margin: 0 auto; border: 1px solid var(--accent-blue); border-radius: 5px; }
+        #cehCertificateModal .close-modal-btn { top: 5px; right: 10px; font-size: 1.5rem; color: black; background-color: rgba(255, 255, 255, 0.5); border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; line-height: 1; }
+        #cehCertificateModal .close-modal-btn:hover { background-color: rgba(255, 255, 255, 0.8); }
+        /* --- End Modal Styles --- */
+
+
+        /* --- Responsive Styles --- */
+        @media (max-width: 992px) {
+            .hero-flex-container { flex-direction: column; text-align: center; }
+            .hero-text-content { margin-bottom: 2rem; }
+            .profile-container { margin-left: 0; margin-bottom: 2rem; }
+            .about-content, .contact-flex { 
+                flex-direction: column; 
+                align-items: center; 
+            }
+            .education-box { 
+                margin-top: 2rem; 
+                width: 100%; 
+                max-width: 600px; 
+            }
+            .project-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+            .modal-content { width: 90%; margin: 15% auto; }
+            .certifications-container { width: 90%; } 
+        }
+
+        @media (max-width: 768px) {
+            .header-content { padding: 1rem; }
+            nav ul { display: none; position: absolute; top: 100%; right: 0; width: 100%; background-color: var(--bg-secondary); flex-direction: column; align-items: center; padding: 1rem 0; box-shadow: 0 10px 15px rgba(0,0,0,0.1); z-index: 1000; }
+            nav ul.active { display: flex; }
+            nav ul li { margin: 0.5rem 0; }
+            nav ul li a:focus { color: var(--accent-cyan); outline: 2px solid var(--accent-cyan); outline-offset: 2px; }
+            .menu-btn { display: block; }
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.2rem; min-height: 3.6rem; }
+            .section-title { font-size: 2rem; }
+            .services-grid, .project-grid { grid-template-columns: 1fr; }
+            .modal-content { margin-top: 20%; }
+            .certification-badge img { max-width: 120px; } 
+            .about-text { text-align: center; } 
+            .education-box { padding: 1.5rem; } 
+        }
+
+        @media (max-width: 576px) {
+            .container { padding: 0 1rem; }
+            .profile-pic { width: 180px; height: 180px; }
+            .hero-title { font-size: 2rem; }
+            .hero-subtitle { min-height: auto; } 
+            .cta-buttons { flex-direction: column; width: 100%; }
+            .btn { width: 100%; }
+            .section-title { font-size: 1.8rem; }
+            .contact-form { padding: 1.5rem; }
+            .modal-content { padding: 20px; }
+            .close-modal-btn { top: 10px; right: 15px; font-size: 1.8rem; }
+             .certifications-container { padding: 1.5rem; }
+             .certification-badge img { max-width: 100px; } 
+        }
+        /* --- End Responsive Styles --- */
+
+    </style>
+</head>
+<body>
+    <div class="terminal-bg" id="terminalBg"></div>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">SR<span>_</span></div>
+                <nav>
+                    <ul id="navMenu">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#certifications">Certifications</a></li> 
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                    <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="scroll-animate fade-in">
+        <div class="container">
+            <div class="hero-flex-container"> 
+                <div class="hero-text-content"> 
+                    <div class="hero-greeting">$ whoami</div>
+                    <h1 class="hero-title">Sudarshan Rangappa</h1>
+                    <h2 class="hero-subtitle"><span id="typed-subtitle"></span></h2>
+                    <p class="hero-text">Building resilient cyber defense environments through hands-on security operations</p>
+                    <div class="cta-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="fas fa-shield-alt"></i> Explore My Work</a>
+                        <a href="#contact" class="btn btn-outline">
+                            <i class="fas fa-paper-plane"></i> Contact Me
+                        </a>
+                        <a href="path/to/your-resume.pdf" class="btn btn-primary" download alt="Download Sudarshan Rangappa's Resume"> 
+                            <i class="fas fa-file-download"></i> Download Resume
+                        </a>
+                    </div>
+                    <div class="seeking-badge">
+                        <i class="fas fa-search"></i> Actively Seeking Cybersecurity Roles (Freshers)
+                    </div>
+                </div>
+                <div class="profile-container">
+                    <div class="profile-pic">
+                        <img src="https://i.postimg.cc/Zqnn4g3x/Whats-App-Image-2025-05-07-at-3-29-16-PM-removebg-preview.png" 
+                             alt="Sudarshan Rangappa - Profile Picture"
+                             onerror="this.style.display='none'; this.parentElement.innerHTML = '<div class=\'placeholder-icon-fallback\'><i class=\'fas fa-user-shield\'></i></div>';">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="scroll-animate fade-in">
+        <div class="container">
+            <h2 class="section-title" data-text="About Me">About Me</h2>
+            <div class="section-title-underline"></div>
+            <div class="about-content">
+                <div class="about-text scroll-animate slide-in-left">
+                    <p>I am Sudarshan Rangappa, currently in the final semester of my MSc in Cybersecurity at the National Forensic Sciences University (2023–2025). I hold a BCA degree from Presidency College, Bengaluru (2020–2023), with a strong academic background and a growing interest in blue team operations, SOC simulation, and threat response automation.</p>
+                    <p>My passion lies in defensive security, particularly in building resilient cyber defense environments. I have hands-on experience with SIEM tools, network monitoring systems, and automated incident response workflows. I have earned the CEH v11 certification and am actively seeking entry-level roles in cybersecurity.</p>
+                    <p>I believe in a proactive approach to security and am constantly enhancing my skills through practical lab environments and real-world simulations. My goal is to contribute to organizations by implementing effective defense strategies and improving security postures through continuous monitoring and response capabilities.</p>
+                </div>
+                <div class="education-box scroll-animate slide-in-right delay-1">
+                    <div class="education-item">
+                        <div class="degree">MSc in Cybersecurity</div>
+                        <div class="institution">National Forensic Sciences University</div>
+                        <div class="edu-date"> <i class="fas fa-calendar-alt" aria-hidden="true"></i> 2023 - 2025 (Final Semester) </div>
+                        <div class="edu-gpa">Current CGPA: ~7.98</div>
+                    </div>
+                    <div class="education-item">
+                        <div class="degree">BCA (Bachelor of Computer Applications)</div>
+                        <div class="institution">Presidency College, Bengaluru</div>
+                        <div class="edu-date"> <i class="fas fa-calendar-alt" aria-hidden="true"></i> 2020 - 2023 </div>
+                        <div class="edu-gpa">CGPA: 8.16</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="scroll-animate fade-in">
+        <div class="container">
+            <h2 class="section-title" data-text="Skills & Tools">Skills & Tools</h2>
+            <div class="section-title-underline"></div>
+            <div class="skills-wrapper">
+                <div class="skill-category scroll-animate slide-in-left delay-1">
+                    <h3><i class="fas fa-laptop-code" aria-hidden="true"></i> Primary Expertise</h3>
+                    <div class="skill-list">
+                        <div class="skill-item"><i class="fas fa-search-plus" aria-hidden="true"></i> Vulnerability Assessment</div>
+                        <div class="skill-item"><i class="fas fa-file-alt" aria-hidden="true"></i> Log Analysis</div>
+                        <div class="skill-item"><i class="fas fa-shield-virus" aria-hidden="true"></i> Threat Identification & Response</div>
+                        <div class="skill-item"><i class="fas fa-cogs" aria-hidden="true"></i> Threat Response Automation</div>
+                        <div class="skill-item"><i class="fas fa-wifi" aria-hidden="true"></i> Network Scanning</div>
+                    </div>
+                </div>
+                <div class="skill-category scroll-animate fade-in delay-2">
+                    <h3><i class="fas fa-tools" aria-hidden="true"></i> Security Tools</h3>
+                    <div class="tools-list">
+                        <div class="tool-item"><div class="tool-name">Wazuh</div><div class="tool-category">SIEM + HIDS</div></div>
+                        <div class="tool-item"><div class="tool-name">Splunk</div><div class="tool-category">Log Analysis</div></div>
+                        <div class="tool-item"><div class="tool-name">Suricata</div><div class="tool-category">NIDS</div></div>
+                        <div class="tool-item"><div class="tool-name">OpenVAS</div><div class="tool-category">Vulnerability Management</div></div>
+                        <div class="tool-item"><div class="tool-name">Cowrie</div><div class="tool-category">Honeypot</div></div>
+                        <div class="tool-item"><div class="tool-name">Shuffle</div><div class="tool-category">SOAR</div></div>
+                    </div>
+                </div>
+                <div class="skill-category scroll-animate slide-in-right delay-3">
+                    <h3><i class="fas fa-toolbox" aria-hidden="true"></i> Additional Tools</h3>
+                    <div class="tools-list">
+                        <div class="tool-item"><div class="tool-name">Wireshark</div><div class="tool-category">Network Analysis</div></div>
+                        <div class="tool-item"><div class="tool-name">Nmap</div><div class="tool-category">Network Discovery</div></div>
+                        <div class="tool-item"><div class="tool-name">Metasploit</div><div class="tool-category">Penetration Testing</div></div>
+                        <div class="tool-item"><div class="tool-name">Autopsy</div><div class="tool-category">Digital Forensics</div></div>
+                        <div class="tool-item"><div class="tool-name">Burp Suite</div><div class="tool-category">Web App Security</div></div>
+                        <div class="tool-item"><div class="tool-name">GoBuster/DirBuster</div><div class="tool-category">Directory Enumeration</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" class="scroll-animate fade-in">
+        <div class="container">
+            <h2 class="section-title" data-text="Certifications">Certifications</h2>
+            <div class="section-title-underline"></div>
+            <div class="certifications-container scroll-animate scale-in delay-1">
+                <div class="certification-item">
+                    <div class="certification-badge">
+                        <img src="https://i.postimg.cc/KzFGp8Fj/CEH-2-E345519-D3-F7.png" alt="CEH v11 Certified Ethical Hacker Badge from EC-Council">
+                    </div>
+                    <div class="certification-details">
+                        <h4>Certified Ethical Hacker (CEH) v11</h4>
+                        <p>EC-Council</p>
+                        <button class="certification-link-btn open-modal-btn" data-modal-target="cehCertificateModal" aria-label="View CEH Certificate Image">
+                            <i class="fas fa-eye" aria-hidden="true"></i> View Certificate Image
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="scroll-animate fade-in">
+        <div class="container">
+            <h2 class="section-title" data-text="Projects">Projects</h2>
+            <div class="section-title-underline"></div>
+            <div class="project-grid">
+                <div class="project-card scroll-animate slide-in-left delay-1">
+                    <div class="project-header">
+                        <h3 class="project-title">ICDE (Integrated Cyber Defence Environment)</h3>
+                        <span class="project-type">Blue Team Lab</span>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-desc">A high-fidelity cybersecurity lab simulating a modern SOC. Implements full-stack security monitoring, detection, and response with integrated tools.</p>
+                        <p class="project-desc">Enables hands-on incident response, log analysis, threat simulation, and automation workflows in a controlled environment.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Wazuh</span> <span class="tech-tag">Suricata</span> <span class="tech-tag">OpenVAS</span> <span class="tech-tag">Cowrie</span> <span class="tech-tag">Splunk</span> <span class="tech-tag">Shuffle SOAR</span> <span class="tech-tag">Active Directory</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <button class="project-link open-modal-btn" data-modal-target="icdeModal" aria-label="View Details for ICDE Project"> 
+                            <i class="fas fa-external-link-alt" aria-hidden="true"></i> View Details
+                        </button>
+                    </div>
+                </div>
+                <div class="project-card scroll-animate slide-in-right delay-2">
+                    <div class="project-header">
+                        <h3 class="project-title">Location-Based IoT Security Key</h3>
+                        <span class="project-type">Hardware Security</span>
+                    </div>
+                    <div class="project-body">
+                        <p class="project-desc">Custom IoT security device using geofencing for physical access control. Uses GPS to enable/disable auth based on secure locations.</p>
+                        <p class="project-desc">Combines hardware security with location-awareness for dynamic multi-factor authentication.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">NodeMCU</span> <span class="tech-tag">GPS Module</span> <span class="tech-tag">Geofencing</span> <span class="tech-tag">2FA</span> <span class="tech-tag">IoT Security</span>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                         <a href="#" class="project-link" aria-label="View Details for IoT Security Key Project (Coming Soon)"> <i class="fas fa-external-link-alt" aria-hidden="true"></i> View Details (TODO)</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div id="icdeModal" class="modal" role="dialog" aria-labelledby="icdeModalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <span class="close-modal-btn" data-modal-close="icdeModal" aria-label="Close ICDE Project Details Modal">&times;</span>
+            <h3 id="icdeModalTitle">ICDE (Integrated Cyber Defence Environment)</h3>
+            <img src="https://i.postimg.cc/3NjwPzNZ/Editor-Mermaid-Chart-2025-05-07-110615.png" 
+                 alt="ICDE Architecture Diagram - Shows interconnected VMs like Kali, Splunk, AD, Wazuh, Suricata, OpenVAS, and Shuffle SOAR." 
+                 class="modal-architecture-img"
+                 onerror="this.alt='ICDE Architecture Diagram Placeholder'; this.src='https://placehold.co/600x400/13171f/e6e6e6?text=Architecture+Diagram';">
+            <h4>Project Overview:</h4>
+            <p>The Integrated Cyber Defence Environment (ICDE) is a comprehensive, high-fidelity lab designed to simulate a modern Security Operations Center (SOC). It integrates various open-source security tools to provide a full-stack monitoring, detection, and response capability. This environment allows for hands-on experience in log analysis, incident response, threat simulation, and the development of automated response workflows using SOAR (Security Orchestration, Automation and Response) principles.</p>
+            <h4>Key Objectives:</h4>
+            <ul>
+                <li>Simulate realistic cyber attack scenarios and practice defensive measures.</li>
+                <li>Gain proficiency in configuring and managing SIEM, NIDS, HIDS, and vulnerability assessment tools.</li>
+                <li>Develop and test incident response playbooks and automation scripts.</li>
+                <li>Understand log correlation across diverse systems for effective threat hunting.</li>
+                <li>Create a repeatable and extensible lab environment for continuous learning and experimentation.</li>
+            </ul>
+            <h4>Core Components & Technologies:</h4>
+            <ul>
+                <li><strong>SIEM & HIDS:</strong> Wazuh for security information and event management, log analysis, and host-based intrusion detection.</li>
+                <li><strong>NIDS:</strong> Suricata for network intrusion detection and prevention.</li>
+                <li><strong>Vulnerability Management:</strong> OpenVAS for network vulnerability scanning and reporting.</li>
+                <li><strong>Honeypot:</strong> Cowrie SSH/Telnet honeypot to capture attacker TTPs.</li>
+                <li><strong>Log Aggregation & Analysis:</strong> Splunk (or ELK Stack) for centralized log collection and advanced analytics.</li>
+                <li><strong>SOAR Platform:</strong> Shuffle for automating incident response workflows.</li>
+                <li><strong>Target Environment:</strong> Windows (with Active Directory) and Linux virtual machines to simulate a typical corporate network.</li>
+                <li><strong>Attack Simulation:</strong> Tools like Metasploit, Kali Linux utilities to generate attack traffic.</li>
+            </ul>
+            <h4>Learning Outcomes & Skills Gained:</h4>
+            <ul>
+                <li>Practical experience in setting up and managing a SOC-like environment.</li>
+                <li>Enhanced skills in log analysis, threat detection, and incident response.</li>
+                <li>Proficiency in using and integrating various cybersecurity tools (Wazuh, Suricata, Splunk, OpenVAS, Shuffle).</li>
+                <li>Understanding of attack vectors and defensive strategies in a simulated enterprise network.</li>
+                <li>Development of automation scripts for security operations.</li>
+            </ul>
+            <div class="tech-stack">
+                <span class="tech-tag">Wazuh</span> <span class="tech-tag">Suricata</span> <span class="tech-tag">OpenVAS</span>
+                <span class="tech-tag">Cowrie</span> <span class="tech-tag">Splunk</span> <span class="tech-tag">Shuffle SOAR</span>
+                <span class="tech-tag">Active Directory</span> <span class="tech-tag">Virtualization (VMware/VirtualBox)</span>
+                <span class="tech-tag">Linux</span> <span class="tech-tag">Windows Server</span> <span class="tech-tag">Scripting (Python/Bash)</span>
+            </div>
+            <p style="margin-top: 1.5rem;"><a href="#" class="btn btn-outline" target="_blank" aria-label="View ICDE Project on GitHub (Coming Soon)"><i class="fab fa-github" aria-hidden="true"></i> View on GitHub (TODO: Add Link)</a></p>
+        </div>
+    </div>
+
+    <div id="cehCertificateModal" class="modal" role="dialog" aria-labelledby="cehCertificateModalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <span class="close-modal-btn" data-modal-close="cehCertificateModal" aria-label="Close CEH Certificate Modal">&times;</span>
+            <h3 id="cehCertificateModalTitle" class="sr-only">CEH v11 Certificate Image</h3> <img src="https://i.postimg.cc/zBXBXGQM/ceh-certificate.png" alt="Sudarshan Rangappa's Certified Ethical Hacker v11 Certificate from EC-Council">
+        </div>
+    </div>
+    
+    <style>
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+    </style>
+
+    <section id="services" class="scroll-animate fade-in">
+        <div class="container">
+            <h2 class="section-title" data-text="Services">Services</h2>
+            <div class="section-title-underline"></div>
+            <div class="services-grid">
+                <div class="service-card scroll-animate scale-in delay-1">
+                    <div class="service-icon"><i class="fas fa-file-signature" aria-hidden="true"></i></div>
+                    <h3 class="service-title">Log Analysis</h3>
+                    <p class="service-desc">In-depth examination of system and network logs to identify suspicious patterns, security incidents, and potential threats using SIEM tools and correlation techniques.</p>
+                </div>
+                <div class="service-card scroll-animate scale-in delay-2">
+                    <div class="service-icon"><i class="fas fa-user-secret" aria-hidden="true"></i></div>
+                    <h3 class="service-title">Vulnerability Assessment</h3>
+                    <p class="service-desc">Systematic evaluation of security weaknesses in systems and networks, prioritizing vulnerabilities based on risk level and providing mitigation strategies.</p>
+                </div>
+                <div class="service-card scroll-animate scale-in delay-3">
+                    <div class="service-icon"><i class="fas fa-project-diagram" aria-hidden="true"></i></div>
+                    <h3 class="service-title">Network Scanning</h3>
+                    <p class="service-desc">Comprehensive network discovery and analysis to map assets, identify open ports, detect unauthorized devices, and evaluate overall network security posture.</p>
+                </div>
+                <div class="service-card scroll-animate scale-in delay-1">
+                    <div class="service-icon"><i class="fas fa-user-shield" aria-hidden="true"></i></div> 
+                    <h3 class="service-title">Threat Detection & Response</h3>
+                    <p class="service-desc">Continuous monitoring for security threats with established protocols for rapid identification, containment, and remediation of potential security incidents.</p>
+                </div>
+                <div class="service-card scroll-animate scale-in delay-2">
+                    <div class="service-icon"><i class="fas fa-tasks-alt" aria-hidden="true"></i></div>
+                    <h3 class="service-title">Incident Response Automation</h3>
+                    <p class="service-desc">Development of automated workflows for security incident handling, reducing response time and ensuring consistent execution of security protocols.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="scroll-animate fade-in">
+        <div class="container">
+            <h2 class="section-title" data-text="Contact Me">Contact Me</h2>
+            <div class="section-title-underline"></div>
+            <div class="contact-flex">
+                <div class="contact-info scroll-animate slide-in-left delay-1">
+                    <h3 class="contact-title">Get In Touch</h3>
+                    <p class="contact-subtitle">I'm currently looking for new opportunities in cybersecurity. Whether you have a question or just want to connect, I'll do my best to get back to you!</p>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
+                        <div class="contact-text"><div class="contact-label">Email</div><div class="contact-value"><a href="mailto:sudarshan_rangappa@proton.me">sudarshan_rangappa@proton.me</a></div></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fab fa-linkedin" aria-hidden="true"></i></div>
+                        <div class="contact-text"><div class="contact-label">LinkedIn</div><div class="contact-value"><a href="https://linkedin.com/in/sudarshan-rangappa" target="_blank" rel="noopener noreferrer">linkedin.com/in/sudarshan-rangappa</a></div></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fab fa-github" aria-hidden="true"></i></div>
+                        <div class="contact-text"><div class="contact-label">GitHub</div><div class="contact-value"><a href="https://github.com/sudarshan0101" target="_blank" rel="noopener noreferrer">github.com/sudarshan0101</a></div></div>
+                    </div>
+                </div>
+                <div class="contact-form scroll-animate slide-in-right delay-2">
+                    <form id="contactForm" action="https://formspree.io/f/mwpobpqq" method="POST"> 
+                        <div class="form-group"><label for="name" class="form-label">Your Name</label><input type="text" id="name" name="name" class="form-input" required autocomplete="name"></div>
+                        <div class="form-group"><label for="email" class="form-label">Your Email</label><input type="email" id="email" name="_replyto" class="form-input" required autocomplete="email"></div>
+                        <div class="form-group"><label for="subject" class="form-label">Subject</label><input type="text" id="subject" name="subject" class="form-input" required></div>
+                        <div class="form-group"><label for="message" class="form-label">Message</label><textarea id="message" name="message" class="form-textarea" required></textarea></div>
+                        <button type="submit" class="btn btn-primary btn-submit"><i class="fas fa-paper-plane" aria-hidden="true"></i> Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#home" class="footer-link">Home</a> 
+                    <a href="#about" class="footer-link">About</a> 
+                    <a href="#skills" class="footer-link">Skills</a> 
+                    <a href="#certifications" class="footer-link">Certifications</a> 
+                    <a href="#projects" class="footer-link">Projects</a> 
+                    <a href="#services" class="footer-link">Services</a> 
+                    <a href="#contact" class="footer-link">Contact</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://linkedin.com/in/sudarshan-rangappa" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Sudarshan Rangappa's LinkedIn Profile"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                    <a href="https://github.com/sudarshan0101" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Sudarshan Rangappa's GitHub Profile"><i class="fab fa-github" aria-hidden="true"></i></a>
+                    <a href="mailto:sudarshan_rangappa@proton.me" class="social-link" aria-label="Email Sudarshan Rangappa"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                </div>
+                <div class="copyright">
+                    &copy; <span id="currentYear">2025</span> Sudarshan Rangappa. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Typed.js for Hero Subtitle
+            if (document.getElementById('typed-subtitle')) {
+                new Typed('#typed-subtitle', {
+                    strings: ['Cybersecurity Enthusiast', 'Blue Team Defender', 'SOC Analyst in Training', 'Threat Hunter'],
+                    typeSpeed: 50,
+                    backSpeed: 25,
+                    backDelay: 1500,
+                    startDelay: 500,
+                    loop: true,
+                    showCursor: true,
+                    cursorChar: '_',
+                });
+            }
+
+            // Mobile Menu Toggle
+            const menuBtn = document.getElementById('menuBtn');
+            const navMenu = document.getElementById('navMenu');
+            if (menuBtn && navMenu) {
+                menuBtn.addEventListener('click', () => {
+                    const isExpanded = navMenu.classList.toggle('active');
+                    menuBtn.setAttribute('aria-expanded', isExpanded);
+                    menuBtn.innerHTML = isExpanded ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+                });
+                document.querySelectorAll('nav ul li a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (navMenu.classList.contains('active')) {
+                            navMenu.classList.remove('active');
+                            menuBtn.setAttribute('aria-expanded', 'false');
+                            menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                        }
+                    });
+                });
+            }
+
+            // Terminal Background Animation
+            const terminalBg = document.getElementById('terminalBg');
+            function createLogLines() {
+                if (!terminalBg) return;
+                terminalBg.innerHTML = ''; 
+                const logLines = [ 
+                    "[ALERT] Critical: Unauthenticated RCE attempt on server SRV01 from 10.211.55.3",
+                    "[INFO] System integrity scan initiated for all endpoints.",
+                    "[WARN] Multiple (5) failed login attempts for user 'admin' on WEBAPP03.",
+                    "[INFO] Log analysis pipeline processed 1.2M events in the last hour.",
+                    "[DEBUG] Executing playbook 'PB-007-PhishingLinkDetected' for alert ID #ALRT-58921.",
+                    "[INFO] Security patch KB5001234 successfully deployed to 98% of workstations.",
+                    "[ALERT] High: Anomalous outbound C2 traffic detected from workstation WKSTN-102 (192.168.1.115) to bad.actor.domain:4444",
+                    "[INFO] Honeypot 'HoneySSH' captured credentials from IP 203.0.113.45 - IOCs logged.",
+                    "[WARN] Brute force attack (200 attempts/min) on VPN gateway blocked from 172.16.23.12.",
+                    "[INFO] Daily configuration backup for core routers and firewalls verified successfully.",
+                    "[DEBUG] SIEM correlation rule 'Suspicious PowerShell Execution' triggered 3 times.",
+                    "[ALERT] Medium: Potential data exfiltration pattern observed via DNS tunneling from DBSRV01.",
+                    "[INFO] SOC escalation procedure initiated for critical incident #INC-2025-05-07-003.",
+                    "[WARN] Unpatched vulnerability CVE-2025-9999 (Severity: High) detected on 3 internal servers.",
+                    "[INFO] Firewall policy update #FPOL-2025-05-07-B applied globally.",
+                    "[DEBUG] Endpoint Detection & Response (EDR) agent successfully deployed to 25 new virtual machines.",
+                    "[ALERT] Low: Known malware signature 'Generic.Trojan.Downloader' quarantined on WKSTN-042.",
+                    "[INFO] Intrusion Prevention System (IPS) blocked 15 unique attack signatures in the last 24 hours.",
+                    "[WARN] Unauthorized software 'unknown_p2p_client.exe' detected on user 'j.doe' machine.",
+                    "[INFO] Security awareness training module completed by 92% of employees this quarter."
+                ];
+                for (let i = 0; i < 20; i++) { 
+                    const logLine = document.createElement('div');
+                    logLine.className = 'log-line';
+                    logLine.textContent = logLines[Math.floor(Math.random() * logLines.length)];
+                    logLine.style.left = `${Math.random() * 70}%`; 
+                    logLine.style.animationDuration = `${10 + Math.random() * 20}s`; 
+                    logLine.style.animationDelay = `${Math.random() * 5}s`; 
+
+                    if (logLine.textContent.includes('[ALERT] Critical:') || logLine.textContent.includes('[ALERT] High:')) logLine.style.color = 'var(--accent-red)';
+                    else if (logLine.textContent.includes('[ALERT] Medium:') || logLine.textContent.includes('[ALERT] Low:') || logLine.textContent.includes('[WARN]')) logLine.style.color = '#ffa500';
+                    else if (logLine.textContent.includes('[DEBUG]')) logLine.style.color = '#9966ff'; 
+                    else logLine.style.color = 'var(--accent-green)'; 
+
+                    terminalBg.appendChild(logLine);
+                }
+            }
+            createLogLines(); 
+            setInterval(createLogLines, 20000); 
+
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (e) => {
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const message = document.getElementById('message').value;
+                    if (name.trim() === '' || email.trim() === '' || message.trim() === '') {
+                        e.preventDefault(); 
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+                    console.log('Form data prepared for submission to Formspree...'); 
+                });
+            }
+
+            // Intersection Observer for Scroll Animations
+            const scrollElements = document.querySelectorAll('.scroll-animate');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate'); 
+                        observer.unobserve(entry.target);    
+                    }
+                });
+            }, { threshold: 0.15 }); 
+            
+            scrollElements.forEach(el => {
+                 observer.observe(el);
+            });
+
+            const currentYearSpan = document.getElementById('currentYear');
+            if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
+
+            const openModalButtons = document.querySelectorAll('.open-modal-btn');
+            const closeModalButtons = document.querySelectorAll('.close-modal-btn');
+            const modals = document.querySelectorAll('.modal'); 
+
+            openModalButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const modalId = button.getAttribute('data-modal-target');
+                    const modal = document.getElementById(modalId);
+                    if (modal) {
+                        modal.style.display = 'block';
+                        document.body.style.overflow = 'hidden'; 
+                    }
+                });
+            });
+
+            closeModalButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const modal = button.closest('.modal'); 
+                    if (modal) {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto'; 
+                    }
+                });
+            });
+
+            window.addEventListener('click', (event) => {
+                 modals.forEach(modal => { 
+                    if (event.target === modal) { 
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto'; 
+                    }
+                 });
+            });
+
+            window.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    modals.forEach(modal => {
+                        if (modal.style.display === 'block') {
+                            modal.style.display = 'none';
+                            document.body.style.overflow = 'auto';
+                        }
+                    });
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
