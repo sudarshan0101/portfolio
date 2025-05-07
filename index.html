@@ -382,7 +382,7 @@
             position: relative;
             overflow: hidden; 
         }
-        #about, #certifications, #projects, #contact { 
+        #about, #certifications, #projects, #contact, #skills { /* Added #skills here */
              background-color: var(--bg-secondary);
         }
 
@@ -414,7 +414,8 @@
         #about .section-title::before, #about .section-title::after,
         #certifications .section-title::before, #certifications .section-title::after,
         #projects .section-title::before, #projects .section-title::after, 
-        #contact .section-title::before, #contact .section-title::after {
+        #contact .section-title::before, #contact .section-title::after,
+        #skills .section-title::before, #skills .section-title::after { /* Added #skills here */
              background: var(--bg-secondary); 
         }
         .section-title::before {
@@ -435,13 +436,99 @@
         .about-content { display: flex; gap: 3rem; align-items: flex-start; }
         .about-text { flex: 2; }
         .about-text p { margin-bottom: 1.5rem; color: var(--text-secondary); line-height: 1.8; }
-        .education-box { flex: 1; background-color: rgba(10, 14, 23, 0.8); border-radius: 10px; padding: 2rem; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); border-left: 4px solid var(--accent-blue); }
-        .education-item { margin-bottom: 2rem; }
-        .education-item:last-child { margin-bottom: 0; }
+        
+        .education-timeline-container {
+            flex: 1;
+            position: relative;
+            padding: 2rem 0 2rem 2rem; 
+            background-color: rgba(10, 14, 23, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .education-timeline-container::before { 
+            content: '';
+            position: absolute;
+            left: 20px; 
+            top: 2rem; 
+            bottom: 2rem; 
+            width: 4px;
+            background-color: var(--accent-blue);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem; 
+            padding-left: 35px; 
+            cursor: pointer; 
+            transition: background-color var(--animation-speed) ease;
+        }
+        .timeline-item:last-child { 
+            margin-bottom: 0; 
+        }
+
+        .timeline-item::before { 
+            content: '';
+            position: absolute;
+            left: -21px; /* Corrected: (20px_bar_left + 2px_bar_half_width) - 8px_dot_half_width = 14px from container edge. 14px - 35px_item_padding = -21px */
+            top: 5px; 
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--accent-green);
+            border: 3px solid var(--bg-secondary); 
+            z-index: 1;
+            transition: transform var(--animation-speed) ease, background-color var(--animation-speed) ease;
+        }
+
+        .timeline-item:hover::before, .timeline-item-focused::before { /* Added .timeline-item-focused */
+            transform: scale(1.2);
+            background-color: var(--accent-cyan);
+        }
+        
+        .timeline-content {
+            background-color: rgba(19, 23, 31, 0.6); 
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 153, 255, 0.15);
+            transition: box-shadow var(--animation-speed) ease, border-color var(--animation-speed) ease;
+        }
+
+        .timeline-item:hover .timeline-content, .timeline-item-focused .timeline-content { /* Added .timeline-item-focused */
+            box-shadow: 0 0 15px rgba(0, 204, 102, 0.3);
+            border-color: var(--accent-green);
+        }
+        .timeline-item-focused .timeline-content { /* Specific focus style if different from hover */
+             box-shadow: 0 0 10px var(--accent-cyan), 0 0 5px var(--accent-blue) inset;
+             border-color: var(--accent-cyan);
+        }
+
+
         .degree { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary); }
         .institution { font-size: 1rem; color: var(--accent-blue); margin-bottom: 0.3rem; }
         .edu-date { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
         .edu-gpa { font-size: 0.9rem; color: var(--accent-green); font-weight: 600; }
+
+        .timeline-content::before { /* The arrow */
+            content: "";
+            position: absolute;
+            top: 10px; 
+            left: -10px; /* Adjusted to better connect with the line: -(half arrow width + space) */
+            width: 0;
+            height: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-right: 10px solid rgba(19, 23, 31, 0.6); /* Match .timeline-content bg */
+            transition: border-color var(--animation-speed) ease;
+        }
+        .timeline-item:hover .timeline-content::before, .timeline-item-focused .timeline-content::before { /* Added .timeline-item-focused */
+             border-right-color: var(--accent-green); 
+        }
+         .timeline-item-focused .timeline-content::before {
+            border-right-color: var(--accent-cyan);
+         }
+
 
         /* --- Skills Section --- */
         .skills-wrapper { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: space-between; }
@@ -456,6 +543,125 @@
         .tool-item:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 10px var(--accent-blue); border-left-color: var(--accent-green); }
         .tool-name { font-weight: 600; color: var(--text-primary); margin-bottom: 0.3rem; }
         .tool-category { font-size: 0.8rem; color: var(--accent-blue); }
+
+        /* START: SKILL TREE CSS */
+        .skill-tree-container {
+            width: 100%;
+            padding: 1rem;
+            background-color: rgba(10, 14, 23, 0.5); /* Slightly transparent primary bg */
+            border-radius: 8px;
+            border: 1px solid rgba(0, 153, 255, 0.1);
+        }
+
+        .skill-branch, .skill-sub-branch {
+            list-style: none;
+            padding-left: 0; /* Base reset */
+            position: relative;
+        }
+        .skill-branch > .skill-node {
+            margin-left: 0; /* Top-level items don't need initial indent for lines */
+        }
+
+        .skill-sub-branch {
+            margin-left: 25px; /* Indentation for sub-levels */
+            padding-left: 25px; /* Space for connecting lines */
+            border-left: 2px dashed rgba(0, 153, 255, 0.3); /* Vertical connector for sub-branch */
+           /* display: none; /* Initially hide sub-branches, JS will toggle */
+        }
+        
+        .skill-node {
+            position: relative;
+            padding: 0.5rem 0 0.5rem 25px; /* Space for node marker and connector */
+            margin-bottom: 0.5rem;
+        }
+        .skill-node:last-child > .skill-sub-branch { /* Hide border for last sub-branch if it's empty or last */
+            /* border-left-color: transparent; /* This might be too aggressive, depends on exact structure */
+        }
+
+
+        /* Horizontal connector from vertical line to node */
+        .skill-node::before {
+            content: '';
+            position: absolute;
+            top: 1em; /* Align with text middle */
+            left: 0;
+            width: 20px; /* Length of horizontal line */
+            height: 2px;
+            background-color: rgba(0, 153, 255, 0.5);
+        }
+         /* For top-level nodes, no preceding vertical line, so adjust horizontal connector */
+        .skill-branch > .skill-node::before {
+            left: -25px; /* Pull it out to connect to an imaginary parent or just act as a lead-in */
+            width: 20px;
+        }
+        .skill-branch > .skill-node:first-child::before { /* Special handling for the very first node if needed */
+             /* left: 0; */
+        }
+
+
+        /* Node marker (dot or icon) */
+        .skill-node::after {
+            content: ''; /* Could be '►' or an icon */
+            position: absolute;
+            top: calc(1em - 6px); /* Center the dot */
+            left: -8px; /* Position on the vertical line of sub-branch or just before text */
+            width: 12px;
+            height: 12px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            border: 2px solid var(--bg-secondary);
+            z-index: 1;
+            transition: all var(--animation-speed) ease;
+        }
+        .skill-branch > .skill-node::after { /* Dot for top-level nodes */
+            left: -33px; /* Adjust to be before the ::before line */
+        }
+
+
+        .skill-name {
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            cursor: pointer;
+            display: inline-flex; /* To align icon and text */
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            transition: background-color var(--animation-speed) ease, color var(--animation-speed) ease;
+        }
+        .skill-name i {
+            color: var(--accent-blue);
+            font-size: 0.9em;
+        }
+
+        .skill-node.has-children > .skill-name::before { /* Expander icon */
+            content: '+'; /* Simple text expander */
+            display: inline-block;
+            margin-right: 0.5rem;
+            color: var(--accent-cyan);
+            font-weight: bold;
+            transition: transform var(--animation-speed) ease;
+        }
+        .skill-node.has-children.expanded > .skill-name::before {
+            transform: rotate(45deg);
+        }
+
+
+        .skill-name:hover {
+            background-color: rgba(0, 153, 255, 0.1);
+            color: var(--accent-cyan);
+        }
+        .skill-node.has-children.expanded > .skill-sub-branch {
+            display: block;
+        }
+
+        /* Hide sub-branches by default if JS is not ready or for no-JS fallback */
+        .skill-node.has-children:not(.expanded) > .skill-sub-branch {
+            display: none;
+        }
+        /* END: SKILL TREE CSS */
+
 
         /* --- Certifications Section --- */
         #certifications { background-color: var(--bg-secondary); }
@@ -612,7 +818,7 @@
                 flex-direction: column; 
                 align-items: center; 
             }
-            .education-box { 
+            .education-timeline-container { 
                 margin-top: 2rem; 
                 width: 100%; 
                 max-width: 600px; 
@@ -620,6 +826,14 @@
             .project-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
             .modal-content { width: 90%; margin: 15% auto; }
             .certifications-container { width: 90%; } 
+            .skills-wrapper {
+                flex-direction: column;
+                align-items: center; /* Center skill categories on smaller screens */
+            }
+            .skill-category {
+                width: 100%;
+                max-width: 500px; /* Or your preferred max width */
+            }
         }
 
         @media (max-width: 768px) {
@@ -636,7 +850,21 @@
             .modal-content { margin-top: 20%; }
             .certification-badge img { max-width: 120px; } 
             .about-text { text-align: center; } 
-            .education-box { padding: 1.5rem; } 
+            .education-timeline-container { padding: 1.5rem 0 1.5rem 1.5rem; } 
+            .education-timeline-container::before { left: 15px; } 
+            
+            .timeline-item::before { 
+                /* Bar center: 15 + (4/2) = 17px. Dot left edge from container: 17 - (16/2) = 9px. */
+                /* Timeline-item padding-left (base): 35px. */
+                /* Dot left relative to item: 9px - 35px = -26px. */
+                left: -26px; 
+            } 
+            .timeline-content::before { /* Arrow */
+                left: -8px; /* Adjust if needed based on new dot pos & item padding */
+                border-width: 7px;
+                border-right-width: 9px;
+            } 
+
         }
 
         @media (max-width: 576px) {
@@ -654,6 +882,17 @@
              .certification-badge img { max-width: 100px; } 
         }
         /* --- End Responsive Styles --- */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
 
     </style>
 </head>
@@ -725,18 +964,22 @@
                     <p>My passion lies in defensive security, particularly in building resilient cyber defense environments. I have hands-on experience with SIEM tools, network monitoring systems, and automated incident response workflows. I have earned the CEH v11 certification and am actively seeking entry-level roles in cybersecurity.</p>
                     <p>I believe in a proactive approach to security and am constantly enhancing my skills through practical lab environments and real-world simulations. My goal is to contribute to organizations by implementing effective defense strategies and improving security postures through continuous monitoring and response capabilities.</p>
                 </div>
-                <div class="education-box scroll-animate slide-in-right delay-1">
-                    <div class="education-item">
-                        <div class="degree">MSc in Cybersecurity</div>
-                        <div class="institution">National Forensic Sciences University</div>
-                        <div class="edu-date"> <i class="fas fa-calendar-alt" aria-hidden="true"></i> 2023 - 2025 (Final Semester) </div>
-                        <div class="edu-gpa">Current CGPA: ~7.98</div>
+                <div class="education-timeline-container scroll-animate slide-in-right delay-1">
+                    <div class="timeline-item" tabindex="0"> 
+                        <div class="timeline-content">
+                            <div class="degree">MSc in Cybersecurity</div>
+                            <div class="institution">National Forensic Sciences University</div>
+                            <div class="edu-date"> <i class="fas fa-calendar-alt" aria-hidden="true"></i> 2023 - 2025 (Final Semester) </div>
+                            <div class="edu-gpa">Current CGPA: ~7.98</div>
+                        </div>
                     </div>
-                    <div class="education-item">
-                        <div class="degree">BCA (Bachelor of Computer Applications)</div>
-                        <div class="institution">Presidency College, Bengaluru</div>
-                        <div class="edu-date"> <i class="fas fa-calendar-alt" aria-hidden="true"></i> 2020 - 2023 </div>
-                        <div class="edu-gpa">CGPA: 8.16</div>
+                    <div class="timeline-item" tabindex="0"> 
+                         <div class="timeline-content">
+                            <div class="degree">BCA (Bachelor of Computer Applications)</div>
+                            <div class="institution">Presidency College, Bengaluru</div>
+                            <div class="edu-date"> <i class="fas fa-calendar-alt" aria-hidden="true"></i> 2020 - 2023 </div>
+                            <div class="edu-gpa">CGPA: 8.16</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -758,8 +1001,60 @@
                         <div class="skill-item"><i class="fas fa-wifi" aria-hidden="true"></i> Network Scanning</div>
                     </div>
                 </div>
+                
                 <div class="skill-category scroll-animate fade-in delay-2">
-                    <h3><i class="fas fa-tools" aria-hidden="true"></i> Security Tools</h3>
+                    <h3><i class="fas fa-sitemap" aria-hidden="true"></i> Interactive Skill Tree</h3>
+                    <div class="skill-tree-container">
+                        <ul class="skill-branch">
+                            <li class="skill-node has-children" tabindex="0">
+                                <span class="skill-name"><i class="fas fa-shield-alt"></i> Defensive Security</span>
+                                <ul class="skill-sub-branch">
+                                    <li class="skill-node has-children" tabindex="0">
+                                        <span class="skill-name">SIEM & Log Management</span>
+                                        <ul class="skill-sub-branch">
+                                            <li class="skill-node" tabindex="0"><span class="skill-name">Wazuh</span></li>
+                                            <li class="skill-node" tabindex="0"><span class="skill-name">Splunk</span></li>
+                                            <li class="skill-node" tabindex="0"><span class="skill-name">Log Correlation</span></li>
+                                        </ul>
+                                    </li>
+                                    <li class="skill-node has-children" tabindex="0">
+                                        <span class="skill-name">Intrusion Detection/Prevention</span>
+                                        <ul class="skill-sub-branch">
+                                            <li class="skill-node" tabindex="0"><span class="skill-name">Suricata (NIDS)</span></li>
+                                            <li class="skill-node" tabindex="0"><span class="skill-name">HIDS Concepts</span></li>
+                                        </ul>
+                                    </li>
+                                    <li class="skill-node" tabindex="0"><span class="skill-name">Vulnerability Management (OpenVAS)</span></li>
+                                    <li class="skill-node" tabindex="0"><span class="skill-name">Honeypots (Cowrie)</span></li>
+                                </ul>
+                            </li>
+                            <li class="skill-node has-children" tabindex="0">
+                                <span class="skill-name"><i class="fas fa-cogs"></i> Security Operations & Automation</span>
+                                <ul class="skill-sub-branch">
+                                    <li class="skill-node" tabindex="0"><span class="skill-name">SOAR (Shuffle)</span></li>
+                                    <li class="skill-node" tabindex="0"><span class="skill-name">Incident Response Playbooks</span></li>
+                                    <li class="skill-node" tabindex="0"><span class="skill-name">Scripting (Python/Bash - Basic)</span></li>
+                                </ul>
+                            </li>
+                            <li class="skill-node has-children" tabindex="0">
+                                <span class="skill-name"><i class="fas fa-bug"></i> Offensive Security (Knowledge)</span>
+                                 <ul class="skill-sub-branch">
+                                    <li class="skill-node" tabindex="0"><span class="skill-name">Ethical Hacking (CEH Concepts)</span></li>
+                                    <li class="skill-node" tabindex="0"><span class="skill-name">Metasploit (Basic)</span></li>
+                                    <li class="skill-node" tabindex="0"><span class="skill-name">Nmap</span></li>
+                                </ul>
+                            </li>
+                             <li class="skill-node" tabindex="0">
+                                <span class="skill-name"><i class="fas fa-network-wired"></i> Networking & Forensics</span>
+                                <ul class="skill-sub-branch">
+                                   <li class="skill-node" tabindex="0"><span class="skill-name">Wireshark</span></li>
+                                   <li class="skill-node" tabindex="0"><span class="skill-name">Autopsy (Digital Forensics)</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="skill-category scroll-animate fade-in delay-3"> <h3><i class="fas fa-tools" aria-hidden="true"></i> Key Security Tools</h3>
                     <div class="tools-list">
                         <div class="tool-item"><div class="tool-name">Wazuh</div><div class="tool-category">SIEM + HIDS</div></div>
                         <div class="tool-item"><div class="tool-name">Splunk</div><div class="tool-category">Log Analysis</div></div>
@@ -769,8 +1064,7 @@
                         <div class="tool-item"><div class="tool-name">Shuffle</div><div class="tool-category">SOAR</div></div>
                     </div>
                 </div>
-                <div class="skill-category scroll-animate slide-in-right delay-3">
-                    <h3><i class="fas fa-toolbox" aria-hidden="true"></i> Additional Tools</h3>
+                <div class="skill-category scroll-animate slide-in-right delay-4"> <h3><i class="fas fa-toolbox" aria-hidden="true"></i> Additional Tools</h3>
                     <div class="tools-list">
                         <div class="tool-item"><div class="tool-name">Wireshark</div><div class="tool-category">Network Analysis</div></div>
                         <div class="tool-item"><div class="tool-name">Nmap</div><div class="tool-category">Network Discovery</div></div>
@@ -902,20 +1196,6 @@
         </div>
     </div>
     
-    <style>
-      .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border-width: 0;
-      }
-    </style>
-
     <section id="services" class="scroll-animate fade-in">
         <div class="container">
             <h2 class="section-title" data-text="Services">Services</h2>
@@ -1098,20 +1378,19 @@
                     const message = document.getElementById('message').value;
                     if (name.trim() === '' || email.trim() === '' || message.trim() === '') {
                         e.preventDefault(); 
-                        alert('Please fill in all required fields.');
+                        console.warn('Contact form: Please fill in all required fields.');
                         return;
                     }
                     console.log('Form data prepared for submission to Formspree...'); 
                 });
             }
 
-            // Intersection Observer for Scroll Animations
             const scrollElements = document.querySelectorAll('.scroll-animate');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('animate'); 
-                        observer.unobserve(entry.target);    
+                        observer.unobserve(entry.target);  
                     }
                 });
             }, { threshold: 0.15 }); 
@@ -1167,6 +1446,60 @@
                     });
                 }
             });
+
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    console.log('Timeline item clicked:', item.querySelector('.degree').textContent);
+                });
+                item.addEventListener('focus', () => { item.classList.add('timeline-item-focused'); });
+                item.addEventListener('blur', () => { item.classList.remove('timeline-item-focused'); });
+            });
+
+            // START: JAVASCRIPT FOR SKILL TREE INTERACTIVITY
+            const skillNodes = document.querySelectorAll('.skill-tree-container .skill-node.has-children');
+            skillNodes.forEach(node => {
+                const skillName = node.querySelector('.skill-name');
+                skillName.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent click from bubbling to parent node if nested
+                    node.classList.toggle('expanded');
+                    const subBranch = node.querySelector('.skill-sub-branch');
+                    if (subBranch) {
+                        subBranch.style.display = node.classList.contains('expanded') ? 'block' : 'none';
+                    }
+                    // ARIA attribute for accessibility
+                    const isExpanded = node.classList.contains('expanded');
+                    skillName.setAttribute('aria-expanded', isExpanded);
+                });
+
+                // Allow keyboard interaction (Enter or Space) to toggle expansion
+                node.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        node.classList.toggle('expanded');
+                        const subBranch = node.querySelector('.skill-sub-branch');
+                        if (subBranch) {
+                             subBranch.style.display = node.classList.contains('expanded') ? 'block' : 'none';
+                        }
+                        const isExpanded = node.classList.contains('expanded');
+                        // Ensure skillName is targeted for ARIA if node itself is focused
+                        const currentSkillName = node.querySelector('.skill-name');
+                        if(currentSkillName) currentSkillName.setAttribute('aria-expanded', isExpanded);
+                    }
+                });
+
+
+                // Set initial ARIA attribute
+                const isInitiallyExpanded = node.classList.contains('expanded');
+                 skillName.setAttribute('aria-expanded', isInitiallyExpanded);
+                // Ensure sub-branches respect the initial 'expanded' state or lack thereof
+                const subBranch = node.querySelector('.skill-sub-branch');
+                if (subBranch) {
+                    subBranch.style.display = isInitiallyExpanded ? 'block' : 'none';
+                }
+            });
+            // END: JAVASCRIPT FOR SKILL TREE INTERACTIVITY
 
         });
     </script>
